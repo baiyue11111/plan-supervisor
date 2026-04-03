@@ -1,0 +1,4 @@
+interface:
+  display_name: "Plan Supervisor"
+  short_description: "Global plan control, boundary checks, parallel decomposition, diagnostic flowcharts, and subagent dispatch"
+  default_prompt: "Use $plan-supervisor to maintain a long-running plan, require boundary clarification when needed, prefer decomposition for independent work, follow using-superpowers for subagent routing, and advance only after fresh verification."
