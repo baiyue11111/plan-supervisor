@@ -19,7 +19,7 @@ This repository hosts the `plan-supervisor` skill that keeps a long-running plan
 Use the skill-creator quick validate script to ensure the documentation stays valid (adjust the path to the Python interpreter that has the required dependencies):
 
 ```bash
-python /Users/wyatt/.codex/skills/.system/skill-creator/scripts/quick_validate.py /Users/wyatt/.agents/skills/plan-supervisor
+python ~/.codex/skills/.system/skill-creator/scripts/quick_validate.py ~/.agents/skills/plan-supervisor
 ```
 
 ## Workflow Suggestions
