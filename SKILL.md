@@ -107,6 +107,7 @@ The plan must track:
    - Identify independent tasks before execution; if steps are independent, split them into separate execution handoffs instead of merging unrelated work.
    - When file or module ownership is disjoint, prefer separate subagents or separate execution chunks.
    - Use `dispatching-parallel-agents` for independent tasks that can be worked on without shared state or sequential dependencies.
+   - **Vertical slice rule:** Each step must deliver a narrow but complete path through every layer (schema → business logic → API/interface → tests). Do NOT cut steps horizontally by technical layer (e.g., "complete all DB schemas first, then all APIs"). A step that only completes one layer cannot be independently demonstrated or verified — it produces a dead artifact until other layers are done. Each step's acceptance criteria must describe a demoable behavior, not a layer completion.
 
 4. Process state.
    - Use git, Linear, scripts, or task notes for durable process tracking when available.
@@ -121,6 +122,8 @@ The plan must track:
      - Real regression tests for the exact failure path or historical bug.
    - Prefer a regression test or regression script for bug fixes.
    - If a failure class has appeared before, require a reusable regression check or artifact instead of a one-off ad hoc check.
+   - Real regression must run against a realistic business flow, not just compile/unit checks; no credit if code passes but the business still fails.
+   - Validate output correctness, not just “output exists” or “looks normal”; reject cases where output is present but wrong.
    - Prefer at least one positive case and one failure or edge case when adding or changing behavior.
    - If automated tests are not available, define the exact manual verification command or artifact.
 
@@ -133,7 +136,8 @@ The plan must track:
 
 7. Verification gate.
    - Do not advance until the current step is verified with fresh evidence.
-   - A step is not verified unless its required checks pass.
+   - A step is not verified unless its required checks pass, including real regression on a realistic flow.
+   - No sign-off for “tests green but business wrong” or “output present but incorrect”.
 
 8. Plan advancement.
    - Update the plan state after each verified step.
